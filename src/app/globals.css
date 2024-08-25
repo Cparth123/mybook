@@ -5,7 +5,8 @@
 @tailwind utilities;
 
 
-*,body {
+*,
+body {
   font-family: "Edu AU VIC WA NT Hand";
   font-weight: 400;
   font-style: normal;
@@ -18,28 +19,42 @@
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: 6px 6px 12px #120d0d,-6px -6px 12px #463535; 
+  box-shadow: 6px 6px 12px #120d0d, -6px -6px 12px #463535;
   border-radius: 10px;
 }
- 
+
 
 ::-webkit-scrollbar-thumb {
-  background: #463535; 
+  background: #463535;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000;
 }
 
 
 /* toast */
-.custom_toast > .Toastify__toast-theme--light {
+.custom_toast>.Toastify__toast-theme--light {
   @apply shadow-customshadow bg-[#4f2626];
 }
 
 .custom_button {
   @apply shadow-buttonclick;
 
+}
+
+
+
+.loader-avtar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background:
+    radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(hotpink 75%, pink 0);
 }

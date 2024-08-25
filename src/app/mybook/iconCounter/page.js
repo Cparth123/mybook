@@ -14,7 +14,7 @@ function page() {
     }, [singledata]);
 
     return (
-        <div className='bg-[#ead6d6] dark:bg-[#3f2727]  w-full flex flex-col justify-center'>
+        <div className='bg-lightmode dark:bg-darkmode  w-full flex flex-col justify-center'>
             <h1 className='text-center text-3xl'>Totls Amount :- ${incomeTotal}</h1>
             <IconItem />
         </div>

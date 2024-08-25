@@ -44,11 +44,11 @@ export default function CenterModel({
           ? incomeData.find((item) => item.id === selctEditId)
           : expanseData.find((item) => item.id === selctEditId)
       );
-    //   if (data) {
-    //     if (nameref.current) nameref.current.value = data.name || "";
-    //     if (amountref.current) amountref.current.value = data.amount || "";
-    //     setImg(data.img || null);
-    //   }
+      //   if (data) {
+      //     if (nameref.current) nameref.current.value = data.name || "";
+      //     if (amountref.current) amountref.current.value = data.amount || "";
+      //     setImg(data.img || null);
+      //   }
     }
   }, [selctEditId, selectbtn, incomeData, expanseData, isOpenModel]);
 
@@ -68,7 +68,7 @@ export default function CenterModel({
       if (modeltype === "edit") {
         let updatedData = {
           id: selctEditId,
-          icon: img && img,
+          icon: img,
           name: nameref.current.value,
           amount: parseFloat(amountref.current.value),
           time: "",
@@ -96,7 +96,7 @@ export default function CenterModel({
       } else if (modeltype === "singleicon") {
         let data = {
           id: Math.random(),
-          icon: img ? img : selctEditIdData.img,
+          icon: img,
           name: nameref.current.value,
           amount: parseFloat(amountref.current.value),
           time: "",
@@ -151,7 +151,7 @@ export default function CenterModel({
                       <img
                         onClick={() => fileref.current.click()}
                         className="w-full h-full  rounded-full"
-                        src={img ? img : "/assets/images/shirt.png"}
+                        src={img ? img : "/assets/images/bookicon.jpg"}
                         alt=""
                       />
                       <input

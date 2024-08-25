@@ -65,9 +65,9 @@ function AddIconFrom() {
                         <Tooltip text={'remove'} fn={() => testfn(item.id)}>
                             <div onClick={() => handlingadditem(item)}>
                                 <div className='w-24  text-3xl hover:bg-gray-200 dark:hover:bg-[#91565663] rounded-full  h-24 border-dashed border-2 p-2'>
-                                    <img className='w-full h-full  rounded-full' src={item.icon ? item.icon : "/assets/images/shirt.png"} alt="" />
+                                    <img className='w-full h-full  rounded-full' src={item.icon ? item.icon : "/assets/images/bookicon.jpg"} alt="" />
                                 </div>
-                                <p className='pl-3 text-sm'>Icon Name</p>
+                                <p className='pl-3 text-sm'>{item.name}</p>
                             </div>
                         </Tooltip>
                     )
