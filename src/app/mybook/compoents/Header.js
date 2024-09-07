@@ -18,7 +18,7 @@ function Header() {
     <div className="shadow-lightmode dark:shadow-customshadow px-2 z-20 dark:bg-darkmode sm:px-28 py-4 sticky flex items-center justify-between top-0 left-0">
       <div className="flex items-center gap-2">
         <img className="h-[50px] w-auto" src="assets/images/h-man2.png" />
-        <h1 className="font-bold">MyBook</h1>
+        <h1 className="font-bold">MyBook my</h1>
       </div>
       <div className="flex items-center gap-4">
         <button
