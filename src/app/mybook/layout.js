@@ -7,9 +7,9 @@ const Loader = lazy(()=>import('./compoents/loader'));
 function layout({ children }) {
   return (
     <div className="min-h-[100vh]">
-        <Loader />
-      {true ? (
+      {false ? (
         <>
+        <Loader />
         </>
       ) : (
         <div className="bg-lightmode dark:bg-darkmode">
