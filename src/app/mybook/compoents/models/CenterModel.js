@@ -9,6 +9,7 @@ import {
   addsingleIcon,
 } from "../../../store/features/counter";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 export default function CenterModel({
   isOpenModel,
@@ -148,11 +149,13 @@ export default function CenterModel({
                   </Dialog.Title>
                   <div className="mt-2 flex justify-end">
                     <div className="w-24  text-3xl hover:bg-gray-200 dark:hover:bg-[#91565663] rounded-full  h-24 border-2 p-1">
-                      <img
+                      <Image
+                        width={100}
+                        height={100}
                         onClick={() => fileref.current.click()}
                         className="w-full h-full  rounded-full"
                         src={img ? img : "/assets/images/bookicon.jpg"}
-                        alt=""
+                        alt="emty"
                       />
                       <input
                         onChange={(e) =>

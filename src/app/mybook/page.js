@@ -9,7 +9,7 @@ const AddForm = lazy(() => import("./compoents/AddForm"));
 const AddIconFrom = lazy(() => import("./compoents/AddIconFrom"));
 const CenterContainer = lazy(() => import("./compoents/CenterContainer"));
 
-function page() {
+function Page() {
   const [CustomIcon, setCustomIcon] = useState(true);
   return (
     <div className="bg-lightmode dark:bg-darkmode  w-full flex items-center">
@@ -53,4 +53,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

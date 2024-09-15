@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import IconItem from './Componets/IconItem'
 import { useSelector } from 'react-redux';
 
-function page() {
+function Page() {
     const [incomeTotal, setTotalAmount] = useState(0);
 
     const singledata = useSelector((state) => state.items.singalIcon)
@@ -21,4 +21,4 @@ function page() {
     )
 }
 
-export default page
+export default Page
