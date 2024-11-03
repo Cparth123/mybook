@@ -5,7 +5,12 @@ import Tooltip from "./Tooltip";
 import CenterModel from "./models/CenterModel";
 import TabButton from "./TabButton";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteIncome, deleteExpanse } from "../../store/features/counter";
+import {
+  deleteIncome,
+  deleteExpanse,
+  GetAllData,
+  RemoveItem,
+} from "../../store/features/counter";
 import { toast } from "react-toastify";
 import Image from "next/image";
 
@@ -27,15 +32,22 @@ function CenterContainer() {
   const rendomColor = ["red", "green", "blue", "#c3c388"];
 
   const removeItem = (id) => {
-    selectbtn == 0
-      ? (dispach(deleteIncome(id)), toast("Delete income icon data!"))
-      : (dispach(deleteExpanse(id)), toast("Delete expanse icon data!"));
+    dispach(
+      RemoveItem({ Id: id, type: selectbtn == 0 ? "income" : "expanse" })
+    );
   };
 
-  const incomeData = useSelector((state) => state.items.income);
-  const expanseData = useSelector((state) => state.items.expanse);
+  const incomeData = useSelector((state) => state?.items.main?.income);
+  const expanseData = useSelector((state) => state?.items.main?.expanse);
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(GetAllData());
+  }, []);
 
   const [shawdata, setShawdata] = useState();
+
   useEffect(() => {
     selectbtn == 0 ? setShawdata(incomeData) : setShawdata(expanseData);
   }, [selectbtn, incomeData, expanseData]);
@@ -52,7 +64,7 @@ function CenterContainer() {
                 key={index}
                 text={"Edit"}
                 rt={true}
-                fn={() => testfn(item.id)}
+                fn={() => testfn(item)}
                 tp={"-10px"}
               >
                 <div className="rounded-md p-2 shadow-lightmodeclick dark:shadow-buttonclick flex items-center justify-between z-10">
@@ -71,7 +83,7 @@ function CenterContainer() {
                         className="w-12 p-1 h-12  rounded-full grid place-content-center font-bold text-2xl capitalize"
                         style={{ backgroundColor }}
                       >
-                        {item.name.charAt(0)}
+                        {item?.name?.charAt(0)}
                       </p>
                     )}
 
@@ -81,7 +93,7 @@ function CenterContainer() {
                     <p className="text-green-500">${item?.amount}</p>
                   </div>
                   <RiCloseLargeFill
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItem(item._id)}
                     className="text-[26px] min-w-[20px]  text-white active:scale-90"
                   />
                 </div>

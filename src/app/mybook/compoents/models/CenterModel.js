@@ -1,12 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addcustomIconincome,
-  addcustomIconexpnse,
-  updateIncome,
-  updateExpanse,
   addsingleIcon,
+  NewItem,
+  singalIconAdd,
+  updateItem,
 } from "../../../store/features/counter";
 import { toast } from "react-toastify";
 import Image from "next/image";
@@ -14,7 +13,6 @@ import Image from "next/image";
 export default function CenterModel({
   isOpenModel,
   setIsOpenModel,
-  title,
   modeltype,
   selctEditId,
   selectbtn,
@@ -24,9 +22,7 @@ export default function CenterModel({
   const nameref = useRef(null);
   const amountref = useRef(null);
   const dispatch = useDispatch();
-  const incomeData = useSelector((state) => state.items.income);
-  const expanseData = useSelector((state) => state.items.expanse);
-  const [selctEditIdData, setSelctEditIdData] = useState();
+
   // fuction ......................
 
   function closeModal() {
@@ -37,23 +33,6 @@ export default function CenterModel({
     setIsOpenModel(true);
   }
 
-  // if edit from open
-  useEffect(() => {
-    if (isOpenModel && selctEditId) {
-      setSelctEditIdData(
-        selectbtn === 0
-          ? incomeData.find((item) => item.id === selctEditId)
-          : expanseData.find((item) => item.id === selctEditId)
-      );
-      //   if (data) {
-      //     if (nameref.current) nameref.current.value = data.name || "";
-      //     if (amountref.current) amountref.current.value = data.amount || "";
-      //     setImg(data.img || null);
-      //   }
-    }
-  }, [selctEditId, selectbtn, incomeData, expanseData, isOpenModel]);
-
-  //   comman fuction.....................
   const clearfn = () => {
     nameref.current.value = "";
     amountref.current.value = "";
@@ -68,42 +47,39 @@ export default function CenterModel({
     } else {
       if (modeltype === "edit") {
         let updatedData = {
-          id: selctEditId,
-          icon: img,
           name: nameref.current.value,
           amount: parseFloat(amountref.current.value),
-          time: "",
+          icon: "",
         };
-        selectbtn === 0
-          ? (dispatch(updateIncome({ id: selctEditId, updatedData })),
-            toast("edit income  data!"))
-          : (dispatch(updateExpanse({ id: selctEditId, updatedData })),
-            toast("edit expanse  data!"));
+        dispatch(
+          updateItem({
+            Id: selctEditId?._id,
+            Item: updatedData,
+            type: selectbtn === 0 ? "income" : "expanse",
+          })
+        );
+        toast(`edit ${selectbtn === 0 ? "income" : "expanse"}  data!`);
         clearfn();
       } else if (modeltype === "add") {
         let data = {
-          id: parseFloat(Math.random()),
-          icon: img,
           name: nameref.current.value,
           amount: amountref.current.value,
-          time: "",
+          icon: "",
         };
 
-        selectbtn == 0
-          ? (dispatch(addcustomIconincome(data)), toast("add income  data!"))
-          : (dispatch(addcustomIconexpnse(data)), toast("add expanse  data!"));
-
-        clearfn();
+        dispatch(
+          NewItem({ Item: data, type: selectbtn == 0 ? "income" : "expanse" })
+        ),
+          clearfn();
       } else if (modeltype === "singleicon") {
         let data = {
-          id: Math.random(),
-          icon: img,
+          icon: "",
           name: nameref.current.value,
           amount: parseFloat(amountref.current.value),
-          time: "",
           qly: 1,
         };
-        dispatch(addsingleIcon(data)), toast("Add singalIncome data!");
+        dispatch(singalIconAdd({ item: data })),
+          toast("Add singalIncome data!");
         clearfn();
       }
     }
@@ -136,7 +112,7 @@ export default function CenterModel({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-lightmode dark:bg-darkmode  shadow-lightmode dark:shadow-customshadow sm:p-6 text-left align-middle text-white transition-all">
+                <Dialog.Panel className="w-full p-2 max-w-md transform overflow-hidden rounded-2xl bg-lightmode dark:bg-darkmode  shadow-lightmode dark:shadow-customshadow sm:p-6 text-left align-middle text-white transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-500"
@@ -147,7 +123,7 @@ export default function CenterModel({
                       ? "Add New Item"
                       : ""}
                   </Dialog.Title>
-                  <div className="mt-2 flex justify-end">
+                  <div className="mt-2 flex justify-end ">
                     <div className="w-24  text-3xl hover:bg-gray-200 dark:hover:bg-[#91565663] rounded-full  h-24 border-2 p-1">
                       <Image
                         width={100}
@@ -168,12 +144,13 @@ export default function CenterModel({
                     </div>
                   </div>
                   <div className="w-full p-[24px] shadow-lightmode dark:shadow-customshadow mt-5 rounded-lg">
-                    <h6>income Name:-</h6>
+                    <h6>Name:-</h6>
                     <input
                       ref={nameref}
                       onKeyDown={(e) =>
                         e.key == "Enter" && amountref.current.focus()
                       }
+                      defaultValue={selctEditId?.name}
                       className="w-full mt-2 focus:outline-none bg-transparent shadow-lightmodeclick dark:shadow-buttonclick p-[5px_10px] rounded-md"
                       type="text"
                     />
@@ -184,6 +161,7 @@ export default function CenterModel({
                       onKeyDown={(e) => e.key == "Enter" && handliingSubmit()}
                       className="w-full mt-2 focus:outline-none bg-transparent shadow-lightmodeclick dark:shadow-buttonclick p-[5px_10px] rounded-md"
                       type="number"
+                      defaultValue={selctEditId?.amount}
                     />
                     <div className="flex gap-5 flex-wrap sm:flex-nowrap">
                       <button

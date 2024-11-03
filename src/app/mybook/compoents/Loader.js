@@ -8,7 +8,7 @@ const Loader = () => {
           width={100}
           height={100}
           className="h-[200px] lg:h-auto w-auto "
-          src="assets/images/h-man2.png"
+          src="/assets/images/h-man2.png"
           alt="emty"
         />
         <div className="loader-avtar h-[200px] lg:h-auto w-auto "></div>

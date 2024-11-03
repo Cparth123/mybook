@@ -42,10 +42,9 @@ function Page() {
         closeOnClick
         rtl={false}
         limit={3}
-        autoClose={2000}
+        autoClose={1000}
         pauseOnFocusLoss
         draggable
-        pauseOnHover={false}
         theme="light"
         className={"custom_toast"}
       />

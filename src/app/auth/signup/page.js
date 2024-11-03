@@ -1,9 +1,10 @@
 "use client";
 import axios from "axios";
-import Image from "next/image";
 import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import img from "../../assets/images/bg.jpg";
+import Image from "next/image";
+
 function Page() {
   const usernameref = useRef(null);
   const passwordref = useRef(null);
@@ -33,8 +34,8 @@ function Page() {
         {" "}
         <Image
           src={img}
-          width={'auto'}
-          height={'auto'}
+          width={"auto"}
+          height={"auto"}
           style={{
             position: "absolute",
             top: 0,
@@ -54,7 +55,7 @@ function Page() {
             required
             placeholder="Enter   username"
             onKeyDown={(e) => e.key == "Enter" && amountref.current.focus()}
-            className="w-full mt-2 focus:outline-none text-green-500 font-bold bg-transparent backdrop-blur-sm shadow-lightmodeclick dark:shadow-buttonclick p-[5px_10px] rounded-md"
+            className="w-full mt-2 font-bold text-green-500 focus:outline-none bg-transparent backdrop-blur-sm shadow-lightmodeclick dark:shadow-buttonclick p-[5px_10px] rounded-md"
             type="text"
           />
           <h6 className="mt-5 font-bold">password:-</h6>
@@ -71,7 +72,7 @@ function Page() {
             type="submit"
             className="min-h-[50px] shadow-lightmode backdrop-blur-sm dark:shadow-customshadow w-full px-10 mt-5 rounded-lg text-white font-bold active:shadow-lightmodeclick dark:active:shadow-buttonclick"
           >
-            login
+            Signup
           </button>
         </form>
       </div>

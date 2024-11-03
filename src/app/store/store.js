@@ -1,17 +1,24 @@
-// src/store.js
-import { configureStore } from '@reduxjs/toolkit';
-import counter from './features/counter';
-import { loadStateFromLocalStorage, saveStateToLocalStorage } from './features/localStorageUtils';
-const preloadedState = loadStateFromLocalStorage();
+// src/store/store.js
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import counter from "./features/counter"; // Ensure this path is correct
+import { persistReducer, persistStore } from "redux-persist"; 
+import storage from "redux-persist/lib/storage"; // Default storage for web
 
-const store = configureStore({
-  reducer: {
-    items: counter,
-    preloadedState
-  },
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const rootReducer = combineReducers({
+  items: counter,
 });
 
-store.subscribe(() => {
-  saveStateToLocalStorage(store.getState());
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Configure the store
+export const store = configureStore({
+  reducer: persistedReducer,
 });
-export default store;
+
+// Create a persistor
+export const persistor = persistStore(store);

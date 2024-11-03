@@ -5,8 +5,7 @@
 @tailwind utilities;
 
 
-*,
-body {
+.fontadd {
   font-family: "Edu AU VIC WA NT Hand";
   font-weight: 400;
   font-style: normal;
@@ -45,7 +44,12 @@ body {
 
 }
 
-
+.authbg{
+  background-image: url(./assets/images/avtar.jpg);
+  background-repeat: no-repeat !important;
+  background-size: cover;
+  background-position: center;
+}
 
 .loader-avtar {
   width: 100px;
@@ -57,4 +61,11 @@ body {
   background:
     radial-gradient(closest-side, white 79%, transparent 80% 100%),
     conic-gradient(hotpink 75%, pink 0);
+}
+
+.bg-landing{
+  background-image: url('../../public/assets/images/bg.jpg') !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }

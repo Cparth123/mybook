@@ -3,12 +3,8 @@ import { FaSun } from "react-icons/fa6";
 import { TbMoon } from "react-icons/tb";
 
 const ToggleDarkMode = () => {
-    const [isChecked, setIsChecked] = useState(false);
     const [darkMode, setDarkMode] = useState(true);
 
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
-    };
 
     useEffect(() => {
         const isDarkMode = localStorage.getItem("darkMode") === "true";
